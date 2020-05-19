@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>WaterBall</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+        }
+        
+        body {
+            height: 100vh;
+            /* 线性渐变 */
+            background: linear-gradient(rgb(95, 95, 250) 10%, rgb(3, 3, 110));
+        }
+        
+        .main,
+        .wave {
+            height: 200px;
+            width: 200px;
+            border-radius: 50%;
+            position: absolute;
+            left: 50%;
+            top: 50%;
+            /* 居中 */
+            transform: translate(-50%, -50%);
+        }
+        
+        .main {
+            border: 3px solid darkturquoise;
+            padding: 10px
+        }
+        
+        .wave {
+            background: darkturquoise;
+            /* 溢出内容隐藏 */
+            overflow: hidden;
+        }
+        /* 伪元素 */
+        /* 在wave之后插入 */
+        /* 旋转的形状 */
+        
+        .wave:after {
+            content: "";
+            width: 300px;
+            height: 300px;
+            /* 0.8透明度 */
+            background: rgba(255, 255, 255, 0.8);
+            position: absolute;
+            left: 50%;
+            top: 0;
+            /* 定义 2D 转换 */
+            /* 右正，左负，下正，上负 */
+            transform: translate(-50%, -60%);
+            border-radius: 40%;
+            /* 将动画与元素绑定  */
+            animation: wave 5s linear infinite;
+        }
+        
+        .wave::before {
+            content: "waterball";
+            position: absolute;
+            left: 50%;
+            top: 0;
+            color: darkturquoise;
+            z-index: 999;
+            transform: translate(-50%, 30px);
+            text-transform: uppercase;
+        }
+        /* 动画 */
+        /* 是循环的 */
+        
+        @keyframes wave {
+            100% {
+                /* 保持旋转不动 */
+                transform: translate(-50%, -60%) rotate(360deg);
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <div class="main">
+        <div class="wave">
+
+        </div>
+    </div>
+</body>
+
+</html>
